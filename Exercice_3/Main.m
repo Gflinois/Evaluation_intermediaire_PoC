@@ -58,11 +58,11 @@ defautVal = [0 1]; %mm
 
 % MGD et MGD avec défauts substitués
 MGD_geo = subs(MGD,cstGeo,cstGeoVal);
-MGD_def_geo = subs(MGD_def,defaut,defautVal);
+MGD_def_geo = subs(MGD_def,[defaut,cstGeo],[defautVal,cstGeoVal]);
 
 % influence d'un défaut 
-MGD_MatlabFunction = matlabFunction(MGD_geo,"Vars",[theta_1 theta_2])
-influDef_MatlabFunction = matlabFunction(MGD_def_geo-MGD_geo,"Vars",[theta_1 theta_2])
+MGD_MatlabFunction = matlabFunction(MGD_geo,"Vars",[theta_1 theta_2]);
+influDef_MatlabFunction = matlabFunction(MGD_def_geo-MGD_geo,"Vars",[theta_1 theta_2]);
 
 
 %% ------------
@@ -70,9 +70,10 @@ influDef_MatlabFunction = matlabFunction(MGD_def_geo-MGD_geo,"Vars",[theta_1 the
 
 % création d'une grille articulaire (ndgrid) 
 % theta_1 et theta_2 varie entre 0 et pi avec un pas de 0.1 rad
-[t1,t2] =     % A COMPLETER 
-t1reshape =   % A COMPLETER
-t2reshape =   % A COMPLETER
+t1 =     [[0:0.1:pi].';
+t2 =  [0:0.1:pi].'; % A COMPLETER 
+t1reshape =   0 % A COMPLETER
+t2reshape =   0 % A COMPLETER
 
 % calul des positions dans l'espace des tâches
 XYZ = MGD_MatlabFunction() % A COMPLETER
