@@ -40,7 +40,8 @@ MGD = T04(1:2,4);
 % ecriture du MGD avec defaut en position - dimension (2x1) 
 % On ne garde que les composantes X et Y
 syms def_d2 def_d3
-MGD_def = subs(MGD,[d2,d3],[def_d2,def_d3]);
+MGD_def = subs(MGD,[d2,d3],[def_d2+d2,def_d3+d3]);
+
 
 %% --------------
 % Cas d'application
@@ -48,16 +49,16 @@ MGD_def = subs(MGD,[d2,d3],[def_d2,def_d3]);
 % fixe les parametres suivants :
 
 % paramètres géométriques et articulaires fixés
-cstGeo = [d2 d3 r3 theta_4]
-cstGeoVal = [325 275 0 0]
+cstGeo = [d2 d3 r3 theta_4];
+cstGeoVal = [325 275 0 0];
 
 % défauts fixés 
 defaut = [def_d2 def_d3]; 
 defautVal = [0 1]; %mm
 
 % MGD et MGD avec défauts substitués
-MGD_geo =     % A COMPLETER
-MGD_def_geo = % A COMPLETER
+MGD_geo = subs(MGD,cstGeo,cstGeoVal);
+MGD_def_geo = subs(MGD_def,defaut,defautVal);
 
 % influence d'un défaut 
 MGD_MatlabFunction = matlabFunction(MGD_geo,"Vars",[theta_1 theta_2])
