@@ -34,14 +34,13 @@ T34 = [cos(theta_4) -sin(theta_4) 0 0;...
 % écriture du MGD en position - dimension (2x1) 
 % On ne garde que les composantes X et Y
 T04 = T01*T12*T23*T34 ; 
-MGD = T04(1:2,4) 
+MGD = T04(1:2,4); 
 
 
 % ecriture du MGD avec defaut en position - dimension (2x1) 
 % On ne garde que les composantes X et Y
 syms def_d2 def_d3
-MGD_def = % A COMPLETER
-
+MGD_def = subs(MGD,[d2,d3],[def_d2,def_d3]);
 
 %% --------------
 % Cas d'application
